@@ -22,7 +22,7 @@ import android.graphics.drawable.Drawable;
 public class ActionBarCompatBase {
 
 	private static ActionBarHelperBase getActionBarHelperBase(Activity activity) {
-		ActionBarActivity actionBarActivity = (ActionBarActivity) activity;
+		ActivityWithActionBar actionBarActivity = (ActivityWithActionBar) activity;
 		return (ActionBarHelperBase) actionBarActivity.getActionBarHelper();		
 	}
 

@@ -12,6 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * 
+ * Modified to implement ActivityWithActionBar interface by Tibor Bombiak, 2012
  */
 
 package sk.m217.actionbarcompat;
@@ -30,13 +32,13 @@ import android.view.MenuInflater;
  * NOTE: this may used with the Android Compatibility Package by extending
  * android.support.v4.app.FragmentActivity instead of {@link Activity}.
  */
-public abstract class ActionBarActivity extends Activity {
+public abstract class ActionBarActivity extends Activity implements ActivityWithActionBar {
     final ActionBarHelper mActionBarHelper = ActionBarHelper.createInstance(this);
 
     /**
      * Returns the {@link ActionBarHelper} for this activity.
      */
-    protected ActionBarHelper getActionBarHelper() {
+    public ActionBarHelper getActionBarHelper() {
         return mActionBarHelper;
     }
 

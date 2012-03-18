@@ -33,13 +33,13 @@ import android.view.MenuInflater;
  * NOTE: this may used with the Android Compatibility Package by extending
  * android.support.v4.app.FragmentActivity instead of {@link ListActivity}.
  */
-public abstract class ActionBarListActivity extends ListActivity {
+public abstract class ActionBarListActivity extends ListActivity implements ActivityWithActionBar {
     final ActionBarHelper mActionBarHelper = ActionBarHelper.createInstance(this);
 
     /**
      * Returns the {@link ActionBarHelper} for this activity.
      */
-    protected ActionBarHelper getActionBarHelper() {
+    public ActionBarHelper getActionBarHelper() {
         return mActionBarHelper;
     }
 
