@@ -79,7 +79,7 @@ public abstract class ActionBarHelper {
     /**
      * Action bar helper code to be run in {@link Activity#onTitleChanged(CharSequence, int)}.
      */
-    protected void onTitleChanged(CharSequence title, int color) {
+    public void onTitleChanged(CharSequence title, int color) {
     }
 
     /**
