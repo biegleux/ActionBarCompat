@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view xmlns:android="http://schemas.android.com/apk/res/android"
+    class="sk.m217.actionbarcompat.ActionBarHelperBase$HomeView"
+	android:layout_width="wrap_content"
+	android:layout_height="fill_parent"
+	android:background="@drawable/actionbar_compat_item">
+	<ImageView android:id="@id/actionbar_compat_up"
+		android:src="@drawable/ic_action_back"
+		android:layout_gravity="center_vertical|left"
+		android:visibility="invisible"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="-4dip" />
+	<ImageView android:id="@id/actionbar_compat_home"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginRight="8dip"
+		android:layout_gravity="center"
+		android:adjustViewBounds="true"
+		android:layout_marginTop="@dimen/actionbar_compat_icon_vertical_padding"
+		android:layout_marginBottom="@dimen/actionbar_compat_icon_vertical_padding"
+		android:scaleType="fitCenter" />
+</view>

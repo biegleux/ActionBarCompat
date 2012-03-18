@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ActionBarCompatSample</string>
+    <string name="actionbar_custom_title">Custom title</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_search">Search</string>
+</resources>
