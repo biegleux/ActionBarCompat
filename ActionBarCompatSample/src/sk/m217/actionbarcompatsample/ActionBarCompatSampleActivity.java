@@ -3,7 +3,6 @@ package sk.m217.actionbarcompatsample;
 import sk.m217.actionbarcompat.ActionBarActivity;
 import sk.m217.actionbarcompat.ActionBarCompat;
 import sk.m217.actionbarcompat.MenuItemCompat;
-import sk.m217.actionbarcompatexample.R;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
