@@ -12,9 +12,9 @@ import android.widget.Toast;
 
 public class ActionBarCompatSampleActivity extends ActionBarActivity {
 
-	private Menu mMenu;
+    private Menu mMenu;
 
-    @Override
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -27,7 +27,7 @@ public class ActionBarCompatSampleActivity extends ActionBarActivity {
         ActionBarCompat.setDisplayHomeAsUpEnabled(this, false);
         ActionBarCompat.setHomeButtonEnabled(this, true);
         ActionBarCompat.setBackgroundDrawable(this,
-        		getResources().getDrawable(R.drawable.actionbar_background));
+        		getResources().getDrawable(R.drawable.actionbar_compat_background));
         ActionBarCompat.setIcon(this, getResources().getDrawable(R.drawable.ic_launcher));
     }
 
@@ -124,5 +124,15 @@ public class ActionBarCompatSampleActivity extends ActionBarActivity {
         		break;
         }
         return super.onOptionsItemSelected(item);    	
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    	super.onRestoreInstanceState(savedInstanceState);
     }
 }

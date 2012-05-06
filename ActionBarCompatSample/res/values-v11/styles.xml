@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!-- 	<style name="ActionBarThemeCustom" parent="ActionBarTheme.Light"> -->
+<!-- 	    <item name="android:actionBarStyle">@style/ActionBarCustom</item> -->
+<!-- 	</style> -->
+<!-- 	<style name="ActionBarCustom" parent="android:style/Widget.Holo.Light.ActionBar"> -->
+<!-- 		<item name="android:background">@drawable/actionbar_compat_background</item> -->
+<!-- 	</style> -->
+</resources>
