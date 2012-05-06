@@ -82,6 +82,5 @@ public class ActionBarHelperHoneycomb extends ActionBarHelper {
      * Does nothing.
      */
     public void initActionBar() {
-
     }
 }

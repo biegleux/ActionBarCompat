@@ -16,21 +16,22 @@
   -->
 
 <resources>
-    <style name="AppTheme" parent="android:style/Theme.Light">
+    <!-- The default theme. -->
+    <style name="ActionBarTheme" parent="android:style/Theme">
         <item name="android:windowTitleSize">@dimen/actionbar_compat_height</item>
         <item name="android:windowTitleBackgroundStyle">@style/ActionBarCompat</item>
-        <item name="android:windowContentOverlay">@drawable/actionbar_shadow</item>
-
+        <item name="android:windowContentOverlay">@null</item>
         <item name="actionbarCompatTitleStyle">@style/ActionBarCompatTitle</item>
         <item name="actionbarCompatItemStyle">@style/ActionBarCompatItem</item>
         <item name="actionbarCompatProgressIndicatorStyle">@style/ActionBarCompatProgressIndicator</item>
+		<item name="actionbarCompatHomeAsUpIndicator">@drawable/ic_action_back</item>
     </style>
 
     <style name="ActionBarCompat">
 		<item name="android:background">@drawable/actionbar_compat_background</item>
-    </style>
+	</style>
 
-    <style name="ActionBarCompatItemBase">
+    <style name="ActionBarCompatItem">
         <!-- layout_width/height must be set in code -->
         <item name="android:scaleType">center</item>
         <item name="android:background">@drawable/actionbar_compat_item</item>
@@ -52,9 +53,23 @@
     </style>
 
     <style name="ActionBarCompatTitle" parent="style/ActionBarCompatTitleBase">
-        <item name="android:textColor">@color/actionbar_title_color</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
 
-    <style name="ActionBarCompatItem" parent="style/ActionBarCompatItemBase">
+	<!-- Theme for a light background with dark text on top. -->
+	<style name="ActionBarTheme.Light" parent="android:style/Theme.Light">
+        <item name="android:windowTitleSize">@dimen/actionbar_compat_height</item>
+        <item name="android:windowTitleBackgroundStyle">@style/ActionBarCompat.Light</item>
+        <item name="android:windowContentOverlay">@drawable/actionbar_compat_shadow</item>
+        <item name="actionbarCompatTitleStyle">@style/ActionBarCompatTitle</item>
+        <item name="actionbarCompatItemStyle">@style/ActionBarCompatItem.Light</item>
+        <item name="actionbarCompatProgressIndicatorStyle">@style/ActionBarCompatProgressIndicator</item>
+        <item name="actionbarCompatHomeAsUpIndicator">@drawable/ic_action_back_light</item>
+	</style>
+    <style name="ActionBarCompat.Light">
+		<item name="android:background">@drawable/actionbar_compat_background_light</item>
+	</style>
+	<style name="ActionBarCompatItem.Light">
+        <item name="android:background">@drawable/actionbar_compat_item_light</item>
     </style>
 </resources>

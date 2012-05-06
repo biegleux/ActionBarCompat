@@ -14,6 +14,7 @@
  * limitations under the License.
  * 
  * Added initialization of action bar by Tibor Bombiak, 2012
+ * Added restoring saved state by Tibor Bombiak, 2012
  */
 
 package sk.m217.actionbarcompat;
@@ -101,4 +102,16 @@ public abstract class ActionBarHelper {
      * Initializes action bar for pre-Honeycomb devices.
      */
     public abstract void initActionBar();
+
+    /**
+     * Action bar helper code to be run in {@link Activity#onSaveInstanceState(android.os.Bundle)}.
+     */
+    public void onSaveInstanceState(Bundle outState) {
+    }
+
+    /**
+     * Action bar helper code to be run in {@link Activity#onRestoreInstanceState(android.os.Bundle)}.
+     */
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    }
 }

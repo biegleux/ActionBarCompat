@@ -15,6 +15,7 @@
  * 
  * Modified to support ActionViews by Benjamin Ferrari, Nov. 15 2011
  * Modified to support extended functionality of action bar by Tibor Bombiak, 2012
+ * Modified to support restoring saved state by Tibor Bombiak, 2012
  */
 
 package sk.m217.actionbarcompat;
@@ -36,8 +37,10 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XmlResourceParser;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.InflateException;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -88,6 +91,9 @@ public class ActionBarHelperBase extends ActionBarHelper {
     private static final int DISPLAY_SHOW_TITLE = 0x8;
 
     private static final String TAG = ActionBarHelperBase.class.getName();
+
+	private static final String KEY_EXPANDED_ITEM = "sk.m217.actionbarcompat.expanded_item";
+	private static final String KEY_HIERARCHY_STATE = "sk.m217.actionbarcompat.hierarchy_state";
 
     protected ActionBarHelperBase(Activity activity) {
         super(activity);
@@ -284,8 +290,8 @@ public class ActionBarHelperBase extends ActionBarHelper {
         final int itemId = item.getItemId();
         final SimpleMenuItem simpleItem = (SimpleMenuItem) item;
 
-        final ViewGroup actionBar = getActionBarCompat();
-        if (actionBar == null) {
+        final ViewGroup actionBarCompat = getActionBarCompat();
+        if (actionBarCompat == null) {
             return null;
         }
 
@@ -319,7 +325,7 @@ public class ActionBarHelperBase extends ActionBarHelper {
             view = actionButton;
         }
         simpleItem.setView(view);
-        actionBar.addView(view);
+        actionBarCompat.addView(view);
 
         if (item.getItemId() == R.id.menu_refresh) {
             // Refresh buttons should be stateful, and allow for indeterminate progress indicators,
@@ -343,7 +349,7 @@ public class ActionBarHelperBase extends ActionBarHelper {
             indicator.setLayoutParams(indicatorLayoutParams);
             indicator.setVisibility(View.GONE);
             indicator.setId(R.id.actionbar_compat_item_refresh_progress);
-            actionBar.addView(indicator);
+            actionBarCompat.addView(indicator);
         }
 
         return view;
@@ -566,7 +572,6 @@ public class ActionBarHelperBase extends ActionBarHelper {
     		}
     		item.setActionViewExpanded(true);
     		actionBarCompat.requestLayout();
-    		item.setActionViewExpanded(true);
     		//if (mExpandedActionView instanceof CollapsibleActionView) {
     		//	((CollapsibleActionView) mExpandedActionView).onActionViewExpanded();
     		//}
@@ -740,7 +745,10 @@ public class ActionBarHelperBase extends ActionBarHelper {
     	if (!mInitialized) {
     		throw new IllegalStateException("ActionBar has not been initialized.");
     	}
-    	getActionBarCompat().setBackgroundDrawable(d);
+        final ViewGroup actionBarCompat = getActionBarCompat();
+        if (actionBarCompat != null) {
+        	actionBarCompat.setBackgroundDrawable(d);
+        }
 	}
 
 	/**
@@ -774,4 +782,41 @@ public class ActionBarHelperBase extends ActionBarHelper {
                     R.string.action_bar_home_description));
 		}
 	}
+
+    /**{@inheritDoc}*/
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+    	if (mExpandedMenuPresenter != null &&
+    			mExpandedMenuPresenter.mCurrentExpandedItem != null) {
+    		outState.putInt(KEY_EXPANDED_ITEM,
+    				mExpandedMenuPresenter.mCurrentExpandedItem.getItemId());
+    	}
+
+		final ViewGroup actionBarCompat = getActionBarCompat();
+		if (actionBarCompat != null) {
+			SparseArray<Parcelable> stateArray = new SparseArray<Parcelable>();
+			actionBarCompat.saveHierarchyState(stateArray);
+			outState.putSparseParcelableArray(KEY_HIERARCHY_STATE, stateArray);
+		}
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+    	int itemId = savedInstanceState.getInt(KEY_EXPANDED_ITEM);
+    	if (itemId != 0 && mExpandedMenuPresenter != null && mMenu != null) { 
+    		final SimpleMenuItem item = (SimpleMenuItem) mMenu.findItem(itemId);
+        	if (item != null) {
+        		item.expandActionView();
+        	}    		
+    	}
+		final ViewGroup actionBarCompat = getActionBarCompat();
+		if (actionBarCompat != null) {
+			SparseArray<Parcelable> stateArray = savedInstanceState
+					.getSparseParcelableArray(KEY_HIERARCHY_STATE);
+			if (stateArray != null) {
+				actionBarCompat.restoreHierarchyState(stateArray);
+			}
+		}
+    }
 }

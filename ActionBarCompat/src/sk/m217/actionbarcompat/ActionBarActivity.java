@@ -14,6 +14,7 @@
  * limitations under the License.
  * 
  * Modified to implement ActivityWithActionBar interface by Tibor Bombiak, 2012
+ * Modified to implement restoring saved state by Tibor Bombiak, 2012
  */
 
 package sk.m217.actionbarcompat;
@@ -81,5 +82,19 @@ public abstract class ActionBarActivity extends Activity implements ActivityWith
     protected void onTitleChanged(CharSequence title, int color) {
         mActionBarHelper.onTitleChanged(title, color);
         super.onTitleChanged(title, color);
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	super.onSaveInstanceState(outState);
+    	mActionBarHelper.onSaveInstanceState(outState);
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    	super.onRestoreInstanceState(savedInstanceState);
+    	mActionBarHelper.onRestoreInstanceState(savedInstanceState);
     }
 }

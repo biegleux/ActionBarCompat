@@ -16,9 +16,10 @@
   -->
 
 <resources>
-    <declare-styleable name="AppTheme">
+    <declare-styleable name="ActionBarTheme">
         <attr name="actionbarCompatTitleStyle" format="reference" />
         <attr name="actionbarCompatItemStyle" format="reference" />
         <attr name="actionbarCompatProgressIndicatorStyle" format="reference" />
+        <attr name="actionbarCompatHomeAsUpIndicator" format="reference" />
     </declare-styleable>
 </resources>
