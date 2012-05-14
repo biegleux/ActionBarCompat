@@ -83,4 +83,18 @@ public abstract class ActionBarListActivity extends ListActivity implements Acti
         mActionBarHelper.onTitleChanged(title, color);
         super.onTitleChanged(title, color);
     }
+
+    /**{@inheritDoc}*/
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+    	super.onSaveInstanceState(outState);
+    	mActionBarHelper.onSaveInstanceState(outState);
+    }
+
+    /**{@inheritDoc}*/
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    	super.onRestoreInstanceState(savedInstanceState);
+    	mActionBarHelper.onRestoreInstanceState(savedInstanceState);
+    }
 }
