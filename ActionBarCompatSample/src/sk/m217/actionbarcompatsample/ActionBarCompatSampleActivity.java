@@ -102,27 +102,25 @@ public class ActionBarCompatSampleActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-    	switch (item.getItemId()) {
-        	case android.R.id.home:
-        		Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
-        		break;
-
-        	case R.id.menu_refresh:
-        		Toast.makeText(this, "Fake refreshing...", Toast.LENGTH_SHORT).show();
-        		getActionBarHelper().setRefreshActionItemState(true);
-        		getWindow().getDecorView().postDelayed(
-        				new Runnable() {
-        					@Override
-        					public void run() {
-        						getActionBarHelper().setRefreshActionItemState(false);
-        					}
-        				}, 1000);
-        		break;
-
-        	case R.id.menu_search:
-        		Toast.makeText(this, "Tapped search", Toast.LENGTH_SHORT).show();
-        		break;
-        }
+    	int menu_refresh = getResources().getIdentifier("menu_refresh", "id", "sk.m217.actionbarcompact");
+    	int menu_search = getResources().getIdentifier("menu_search", "id", "sk.m217.actionbarcompact");
+    	int home = getResources().getInteger(android.R.id.home);
+    	
+    	if (item.getItemId() == home) {
+    		Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
+    	} else if (item.getItemId() == menu_refresh) {
+    		Toast.makeText(this, "Fake refreshing...", Toast.LENGTH_SHORT).show();
+    		getActionBarHelper().setRefreshActionItemState(true);
+    		getWindow().getDecorView().postDelayed(
+    				new Runnable() {
+    					@Override
+    					public void run() {
+    						getActionBarHelper().setRefreshActionItemState(false);
+    					}
+    				}, 1000);
+    	} else if (item.getItemId() == menu_refresh) {
+    		Toast.makeText(this, "Tapped search", Toast.LENGTH_SHORT).show();
+    	}
         return super.onOptionsItemSelected(item);    	
     }
 
